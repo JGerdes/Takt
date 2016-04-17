@@ -34,3 +34,7 @@ uint detector_get_bpm() {
   uint bpm = (sum / SAMPLE_SIZE) + 0.5;
   return bpm;
 }
+
+uint detector_get_beat_duration(uint bpm) {
+  return 60000 / bpm;  
+}
