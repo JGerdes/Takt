@@ -1,8 +1,9 @@
 #include <pebble.h>
 #include "detector.h"
+#include "config.h"
 
 static long last_ms = 0;
-static uint last_bpm[10];
+static uint last_bpm[SAMPLE_SIZE];
 static uint last_index = 0;
 
 void detector_beat_happend() {
@@ -13,12 +14,12 @@ void detector_beat_happend() {
   uint bpm = 60000 / diff;
   if(last_ms != 0) {
     if(last_bpm[0] == 0) {
-      for(uint i=0; i<10; i++) {
+      for(uint i = 0; i < SAMPLE_SIZE; i++) {
         last_bpm[i] = bpm;
       }
     } else {
       last_index++;
-      last_index = last_index % 10;
+      last_index = last_index % SAMPLE_SIZE;
       last_bpm[last_index] = bpm;
     }
   }  
@@ -27,9 +28,9 @@ void detector_beat_happend() {
 
 uint detector_get_bpm() {
   uint sum = 0;
-  for(uint i=0; i<10; i++) {
-      sum += last_bpm[i];
-    }
-  uint bpm = (sum/10) + 0.5;
+  for(uint i = 0; i < SAMPLE_SIZE; i++) {
+    sum += last_bpm[i];
+  }
+  uint bpm = (sum / SAMPLE_SIZE) + 0.5;
   return bpm;
 }

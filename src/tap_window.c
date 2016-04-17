@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "tap_window.h"
+#include "config.h"
 #include "detector.h"
 
 static TextLayer *s_time_layer;
@@ -36,11 +37,11 @@ static void beat_happend() {
   text_layer_set_text(s_time_layer, s_buffer);
   
   if(s_screen_dark) {
-    text_layer_set_text_color(s_time_layer, GColorChromeYellow);
-    bitmap_layer_set_background_color(s_arc_layer, GColorWhite);
+    text_layer_set_text_color(s_time_layer, COLOR_FONT_EVEN);
+    bitmap_layer_set_background_color(s_arc_layer, COLOR_BACKGROUND_EVEN);
   } else {
-    text_layer_set_text_color(s_time_layer, GColorPictonBlue);
-    bitmap_layer_set_background_color(s_arc_layer, GColorBlack);
+    text_layer_set_text_color(s_time_layer, COLOR_FONT_ODD);
+    bitmap_layer_set_background_color(s_arc_layer, COLOR_BACKGROUND_ODD);
   }
   s_screen_dark = !s_screen_dark;
 }
