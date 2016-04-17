@@ -6,6 +6,10 @@ static Window *tap_window;
 static void click_config_provider(void *context) {
   ButtonId id = BUTTON_ID_SELECT;
   window_single_click_subscribe(id, tap_window_select_handler);
+  id = BUTTON_ID_UP;
+  window_single_click_subscribe(id, tap_window_up_handler);
+  id = BUTTON_ID_DOWN;
+  window_single_click_subscribe(id, tap_window_down_handler);
 
 }
 

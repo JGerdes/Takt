@@ -6,6 +6,7 @@ static long last_ms = 0;
 static uint last_bpm[SAMPLE_SIZE];
 static uint last_index = 0;
 
+
 void detector_beat_happend() {
   time_t temp = time(NULL);
   long ms = time_ms(&temp, NULL);
