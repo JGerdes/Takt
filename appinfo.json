@@ -1,0 +1,23 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "jonas.gerdes1@gmail.com",
+    "enableMultiJS": true,
+    "longName": "Takt BPM Detector",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Takt",
+    "targetPlatforms": [
+        "chalk"
+    ],
+    "uuid": "4cd53538-c163-4f49-93d0-baaeee665cb7",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
