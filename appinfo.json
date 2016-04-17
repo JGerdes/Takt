@@ -3,12 +3,20 @@
     "capabilities": [
         ""
     ],
-    "companyName": "jonas.gerdes1@gmail.com",
+    "companyName": "jonasgerdes.com",
     "enableMultiJS": true,
     "longName": "Takt BPM Detector",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/icon28",
+                "menuIcon": true,
+                "name": "APP_ICON_28",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "Takt",
