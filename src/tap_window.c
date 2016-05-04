@@ -10,6 +10,12 @@ static Layer *s_arc_layer;
 
 static AppTimer *s_auto_beat_timer = NULL;
 
+static const uint32_t const segments[] = { 50 };
+VibePattern pat = {
+  .durations = segments,
+  .num_segments = ARRAY_LENGTH(segments),
+};
+
 void tap_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
@@ -58,7 +64,7 @@ static void auto_beat_handler(void *data) {
   uint bpm = detector_get_bpm();
   s_auto_beat_timer = app_timer_register(detector_get_beat_duration(bpm), auto_beat_handler, NULL);
   toggle_screen();
-  vibes_short_pulse();
+  vibes_enqueue_custom_pattern(pat);
   
 }
 
