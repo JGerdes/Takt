@@ -55,17 +55,22 @@ static void toggle_screen() {
 }
 
 static void auto_beat_handler(void *data) {
-  toggle_screen();
   uint bpm = detector_get_bpm();
   s_auto_beat_timer = app_timer_register(detector_get_beat_duration(bpm), auto_beat_handler, NULL);
+  toggle_screen();
+  vibes_short_pulse();
+  
 }
 
-static void beat_happend() {
-  detector_beat_happend();
-  uint bpm = detector_get_bpm();
+static void update_bpm_text(unsigned int bpm) {
   static char s_buffer[16];
   snprintf(s_buffer, 16, "%u", bpm);
   text_layer_set_text(s_time_layer, s_buffer);
+}
+static void beat_happend() {
+  detector_beat_happend();
+  uint bpm = detector_get_bpm();
+  update_bpm_text(bpm);
   
   if(bpm != 0) {
     if(s_auto_beat_timer == NULL) {
@@ -82,10 +87,18 @@ void tap_window_select_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 void tap_window_up_handler(ClickRecognizerRef recognizer, void *context) {
-  progress_circle_reset_beats();
+  //progress_circle_reset_beats();
+  uint bpm = detector_get_bpm();
+  detector_set_bpm(bpm+1);
+  update_bpm_text(bpm+1);
 }
 
 void tap_window_down_handler(ClickRecognizerRef recognizer, void *context) {
+  uint bpm = detector_get_bpm();
+  if(bpm>1) {
+    detector_set_bpm(bpm-1);
+    update_bpm_text(bpm-1);
+  }
   
 }
 
