@@ -39,3 +39,9 @@ uint detector_get_bpm() {
 uint detector_get_beat_duration(uint bpm) {
   return 60000 / bpm;  
 }
+
+void detector_set_bpm(uint bpm){
+  for(uint i = 0; i < SAMPLE_SIZE; i++) {
+    last_bpm[i] = bpm;
+  }
+}
